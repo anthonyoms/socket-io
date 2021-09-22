@@ -4,9 +4,10 @@ const ticketController = new TicketController;
 
 const socketController = (socket) => {
 
-    socket.emit('tickets-pendientes', ticketController.cola)
     socket.emit('ultimo-ticket', ticketController.ultimo);
-    socket.broadcast.emit('estado-actual', ticketController.ultimos4);
+    socket.emit('estado-actual', ticketController.ultimos4);
+    socket.emit('tickets-pendientes', ticketController.cola)
+    
     
 
     socket.on('siguiente-ticket', (paylaod, callback) => {
